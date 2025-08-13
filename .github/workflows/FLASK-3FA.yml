@@ -24,4 +24,4 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh ubuntu@EC2_PUBLIC_IP "cd /home/ubuntu/GHA-3FA && git pull && sudo systemctl restart flaskapp"
+          ssh ubuntu@EC2_PUBLIC_IP "cd /home/ubuntu/GHA-3FA && git pull && sudo systemctl restart flaskapp" 
