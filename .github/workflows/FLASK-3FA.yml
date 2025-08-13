@@ -1,4 +1,4 @@
-name: Deploy Flask App to EC2
+name: Deploy Flask 3FA App to EC2
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code from GitHub
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup SSH key
@@ -23,8 +23,11 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh ubuntu@${{ secrets.EC2_PUBLIC_IP }} "
-            cd /home/ubuntu/GHA-3FA &&
-            git pull &&
-            sudo systemctl restart flaskapp
-          "
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            cd /home/ubuntu/GHA-3FA
+            git pull origin main
+            source venv/bin/activate
+            pip install -r requirements.txt
+            # Agar systemd service bana hai
+            sudo systemctl restart flaskapp || echo "Service restart skipped"
+          EOF
