@@ -7,15 +7,15 @@ import base64
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a strong secret key
 
-# Setup a global secret key for OTP generation (this could be user-specific)
+# Setup a global secret key for OTP generation
 otp_secret = pyotp.random_base32()
 
 @app.route('/')
 def index():
     # Generate OTP URI and QR Code
     totp = pyotp.TOTP(otp_secret)
-    uri = totp.provisioning_uri(name="user@example.com", issuer_name="My2FAApp")
-    
+    uri = totp.provisioning_uri(name="user@example.com", issuer_name="Flask-3FA-App")
+
     # Generate QR Code
     img = qrcode.make(uri)
     buffer = io.BytesIO()
@@ -24,7 +24,6 @@ def index():
 
     # Render the OTP page with QR code
     return render_template("s3.html", qr_code=qr_code)
-
 
 @app.route('/verify', methods=['POST'])
 def verify():
@@ -36,7 +35,7 @@ def verify():
         return redirect(url_for('dashboard'))
     else:
         # Re-render the OTP page with error and regenerated QR
-        uri = totp.provisioning_uri(name="user@example.com", issuer_name="My2FAApp")
+        uri = totp.provisioning_uri(name="user@example.com", issuer_name="Flask-3FA-App")
         img = qrcode.make(uri)
         buffer = io.BytesIO()
         img.save(buffer, format="PNG")
@@ -44,19 +43,16 @@ def verify():
 
         return render_template("s3.html", qr_code=qr_code, error="Invalid OTP. Please try again.")
 
-
 @app.route('/dashboard')
 def dashboard():
     if not session.get('authenticated'):
         return redirect(url_for('index'))
     return render_template("dashboard.html")
 
-
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

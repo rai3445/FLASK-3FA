@@ -1,0 +1,31 @@
+nohup: ignoring input
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.40.149:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 159-538-839
+127.0.0.1 - - [14/Aug/2025 09:31:24] "GET / HTTP/1.1" 200 -
+27.60.130.138 - - [14/Aug/2025 09:32:48] "GET / HTTP/1.1" 200 -
+27.60.130.138 - - [14/Aug/2025 09:33:07] "GET / HTTP/1.1" 200 -
+27.60.130.138 - - [14/Aug/2025 09:33:51] "[32mPOST /verify HTTP/1.1[0m" 302 -
+27.60.130.138 - - [14/Aug/2025 09:33:52] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [14/Aug/2025 09:40:18] "GET / HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:40:32] "GET / HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:40:56] "[32mPOST /verify HTTP/1.1[0m" 302 -
+27.60.130.113 - - [14/Aug/2025 09:40:57] "GET /dashboard HTTP/1.1" 200 -
+157.55.39.223 - - [14/Aug/2025 09:43:54] "[33mGET /robots.txt HTTP/1.1[0m" 404 -
+52.167.144.176 - - [14/Aug/2025 09:44:05] "GET / HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:56:47] "GET /dashboard HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:57:29] "GET / HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:58:03] "POST /verify HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 09:58:15] "[32mPOST /verify HTTP/1.1[0m" 302 -
+27.60.130.113 - - [14/Aug/2025 09:58:15] "GET /dashboard HTTP/1.1" 200 -
+40.77.167.6 - - [14/Aug/2025 09:58:47] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [14/Aug/2025 10:57:04] "GET / HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 10:57:36] "GET /dashboard HTTP/1.1" 200 -
+27.60.130.113 - - [14/Aug/2025 10:58:14] "GET / HTTP/1.1" 200 -
