@@ -1,8 +1,10 @@
+# .github/workflows/FLASK-3FA.yml
+
 name: Deploy to EC2 (FLASK-3FA)
 
 on:
   push:
-    branches:
+    branches: 
       - main
 
 jobs:
@@ -20,7 +22,6 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           port: 22
-          host_key_check: false
           source: "."
           target: "~/FLASK-3FA"
 
