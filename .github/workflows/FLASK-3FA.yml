@@ -18,15 +18,16 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "."
+          key: ${{ secrets.EC2_KEY }}        # ← Secret name must match
+          source: "./"
           target: "~/FLASK-3FA"
+          host_key_check: false
 
       - name: Restart Flask app on EC2
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_KEY }}
           script: |
             sudo systemctl restart flaskapp
