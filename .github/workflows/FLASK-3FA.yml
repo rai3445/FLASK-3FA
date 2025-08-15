@@ -13,14 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Copy dashboard.html to EC2
+      - name: Copy updated files to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "templates/dashboard.html"
-          target: "~/FLASK-3FA/templates/"
+          source: "."
+          target: "~/FLASK-3FA"
 
       - name: Restart Flask app on EC2
         uses: appleboy/ssh-action@master
@@ -29,6 +29,4 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/FLASK-3FA
-            source venv/bin/activate
-            sudo systemctl restart flaskapp || pkill -f gunicorn || nohup gunicorn --bind 0.0.0.0:8000 app:app &
+            sudo systemctl restart flaskapp
