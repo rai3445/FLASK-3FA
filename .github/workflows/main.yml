@@ -1,0 +1,37 @@
+name: Flask 3FA GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Clone Repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Install Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Install Requirements
+      - name: Install Dependencies
+        run: |
+          pip install flask pyotp qrcode pillow
+
+      # Run Flask App
+      - name: Run Flask Application
+        run: |
+          python app.py &
+          sleep 10
+
+      # Success Message
+      - name: Workflow Success
+        run: echo "GitHub Actions Workflow Completed Successfully 🚀"
